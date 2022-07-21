@@ -19,5 +19,5 @@ resources:
   repositories:
   - repository: templates
     type: git
-    name: SDI-API-MuleSoft/sdi-azure-pipeline-templates
+    name: MuleDevOps/sdi-azure-pipeline-templates
     ref: develop
