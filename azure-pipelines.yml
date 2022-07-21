@@ -20,4 +20,4 @@ resources:
   - repository: templates
     type: git
     name: SDI-API-MuleSoft/sdi-azure-pipeline-templates
-    ref: feature/icc-288-foundation
+    ref: develop
