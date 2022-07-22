@@ -137,4 +137,37 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
+	<profiles>
+		<profile>
+			<id>cloudhub</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<cloudHubDeployment>
+								<muleVersion>${app.runtime}</muleVersion>
+								<businessGroupId>${anypointBusinessGroupId}</businessGroupId>
+								<environment>${anypointEnvironment}</environment>
+								<applicationName>${muleConfigEnvironment}-${release.artifactId}-v${release.majorVersion}</applicationName>
+								<workerType>${anypointWorkerType}</workerType>
+								<workers>${anypointWorkerCount}</workers>
+								<connectedAppClientId>${anypointConnectedAppClientId}</connectedAppClientId>
+								<connectedAppClientSecret>${anypointConnectedAppClientSecret}</connectedAppClientSecret>
+								<connectedAppGrantType>client_credentials</connectedAppGrantType>
+								<objectStoreV2>true</objectStoreV2>
+								<skipDeploymentVerification>true</skipDeploymentVerification>
+								<properties/>
+							</cloudHubDeployment>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 </project>
