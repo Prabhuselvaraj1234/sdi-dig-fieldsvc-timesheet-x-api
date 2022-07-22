@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:sockets="http://www.mulesoft.org/schema/mule/sockets"
+	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+    xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+    xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:sdi-ax-frm-timesheet-s-api-v1="http://www.mulesoft.org/schema/mule/sdi-ax-frm-timesheet-s-api-v1"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/sockets http://www.mulesoft.org/schema/mule/sockets/current/mule-sockets.xsd 
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd 
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/sdi-ax-frm-timesheet-s-api-v1 
+http://www.mulesoft.org/schema/mule/sdi-ax-frm-timesheet-s-api-v1/current/mule-sdi-ax-frm-timesheet-s-api-v1.xsd">
+
+    <global-property doc:name="Global Property" doc:id="253fc565-33be-4769-8869-eb3222ab59cc" name="mule.env" value="sandbox" />
+    <global-property doc:name="Global Property" doc:id="bf2bd8fb-964a-4107-afd3-9bb2a14838f7" name="mule.enc.key" value="12345678901234567890123456789012" />
+    
+    <secure-properties:config name="securePropertiesConfig" doc:name="Secure Properties Config" file="${mule.env}.yaml" key="${mule.enc.key}"/>
+    <configuration-properties doc:name="Configuration properties" doc:id="8668ef88-87eb-4372-8502-8fab9fea25eb" file="${mule.env}.yaml" />
+<!-- 
+    <tls:context name="inboundHttpTlsContext" doc:name="Inbound HTTP TLS Context" doc:id="81f770c1-7550-4c00-9e67-8721083886bc">
+        <tls:key-store type="${replaceme.inbound.tls.keystore.type}" path="${replaceme.inbound.tls.keystore.path}" keyPassword="${secure::replaceme.inbound.tls.keystore.key.password}" password="${secure::replaceme.inbound.tls.keystore.password}" />
+    </tls:context>
+    <tls:context name="outboundHttpTlsContext" doc:name="Outbound HTTP TLS Context" doc:id="b6edb3ad-ff1a-4a42-aa9d-2352f43c764c" >
+        <tls:trust-store path="${replaceme.outbound.tls.truststore.path}" password="${secure::replaceme.outbound.tls.truststore.password}" type="${replaceme.outbound.tls.truststore.type}"/>
+    </tls:context>
+-->
+    <tls:context name="outboundHttpTlsContext" doc:name="TLS Context" doc:id="e72d9604-32d2-43c4-bb24-d19150b2dbb3" >
+<!--         <tls:trust-store path="${replaceme.outbound.tls.truststore.path}" password="${secure::replaceme.outbound.tls.truststore.password}" type="${replaceme.outbound.tls.truststore.type}"/> -->
+        <tls:trust-store insecure="true" />
+    </tls:context>
+
+    <http:listener-config name="inboundHttpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="${sdi-dig-fieldsvc-timesheet-x-api-v1.inbound.http.listener.port}"/>
+    </http:listener-config>
+
+<!--     <http:request-config name="outboundHTTPRequestConfig" doc:name="HTTP Request configuration" doc:id="0062c47e-4be8-40bf-ab91-d1a10e8ddb61" doc:description="HTTP Response timeout must be set. Default timeout is preconfigured." sendCorrelationId="ALWAYS" responseTimeout="#[vars.outboundHttpResponseTimeout]" preserveHeadersCase="true">
+        <http:request-connection host="${replaceme.outbound.https.host}" port="${replaceme.outbound.https.port}" protocol="HTTPS" tlsContext="outboundHttpTlsContext">
+            <http:authentication >
+                <oauth:client-credentials-grant-type clientId='#[p("replaceme.outbound.oauth.client.id")]' clientSecret='#[p("replaceme.outbound.oauth.client.secret")]' scopes='#[p("replaceme.outbound.oauth.scopes")]' tokenUrl='#[p("replaceme.outbound.oauth.token.uri")]' tokenManager="tokenManagerConfig" tlsContext="outboundHttpTlsContext"/>
+            </http:authentication>
+            <http:client-socket-properties >
+                <sockets:tcp-client-socket-properties connectionTimeout="#[vars.outboundHttpConnectionTimeout]" keepAlive="true"/>
+            </http:client-socket-properties>
+        </http:request-connection>
+    </http:request-config> -->
+    <global-property doc:name="Global Property" doc:id="cf199d23-a534-4ce6-946e-915fcaa345ee" name="mule.app.name" value="sdi-dig-fieldsvc-timesheet-x-api-v1" />
+</mule>

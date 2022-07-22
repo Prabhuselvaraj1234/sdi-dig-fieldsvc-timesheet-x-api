@@ -1,0 +1,17 @@
+{
+    "errors": [
+        {
+            "id": "123456789012345678901234",
+            "status": "400",
+            "code": "badRequest",
+            "title": "The API request is invalid or improperly formed. Consequently, the API server could not understand the request.",
+            "detail": "add detail here",
+            "links": {
+                "about": "https://sample.org/#badrequest"
+             },
+            "meta": {
+                "log_system_uri": "https://sample.org/sample"
+            }
+        }
+    ]
+}

@@ -5,7 +5,7 @@ parameters:
 - name: deployToCI
   displayName: Deploy to CI?
   type: boolean
-  default: false
+  default: true
 
 variables:
 - group: DEV1-SDI-ANYPOINT
@@ -19,5 +19,5 @@ resources:
   repositories:
   - repository: templates
     type: git
-    name: SDI-API-MuleSoft/sdi-azure-pipeline-templates
-    ref: feature/icc-288-foundation
+    name: MuleDevOps/sdi-azure-pipeline-templates
+    ref: develop

@@ -1,0 +1,20 @@
+# SANDPIT application properties
+
+# Application specific config
+application:
+  name: "sdi-dig-fieldsvc-timesheet-x-api-v1"
+
+# Auto Discovery
+autodiscovery_id:
+  sdi-dig-fieldsvc-timesheet-x-api-v1: "123456"
+
+# Replace the high level name with a fully qualified namespace, for example: sdi-mobile-fmapexp-partsinventory-x-api-v1
+
+sdi-dig-fieldsvc-timesheet-x-api-v1:
+  inbound:
+    http:
+      listener:
+        port: "8091"
+    https:
+      listener:
+        port: "8092"

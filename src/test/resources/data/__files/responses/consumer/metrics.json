@@ -1,0 +1,7 @@
+{
+  "mule_version": "4.4.0",
+  "os_name": "RHEL",
+  "os_version": "8.0",
+  "server_ip": "111.222.1.331",
+  "time_zone": "Australia/Sydney"
+}

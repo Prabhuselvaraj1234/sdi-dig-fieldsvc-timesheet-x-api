@@ -1,0 +1,61 @@
+# Usage:
+#   - Use all lowercase names. FOr more details about the naming standards, refer to the standards page on the Wiki
+#   - To assert using one of the methods below, add the required string. Otherwise set the relevant attribute to blank string.
+#     However, all attributes are required to be set.
+#   - assertion_pattern_match - used for asserting payload variables, for example payload.postcode
+#     assertion_pattern_match_variable - identify the name of variable (for example, postcode). Required for patternm matching. 
+#     assertion_variable - do not use (as this is not implemented)
+head_ping_success_200:
+  request_method: HEAD
+  request_path: "/ping"
+  expected_http_status: "200"
+  expected_data_filepath: ""
+  assertion_expression: ""
+  assertion_variable: ""
+  assertion_pattern_match: ""
+  assertion_pattern_match_variable: ""
+get_status_success_200:
+  request_method: GET
+  request_path: "/status"
+  expected_http_status: "200"
+  expected_data_filepath: "data/__files/responses/consumer/status.json"
+  assertion_expression: ""
+  assertion_variable: ""
+  assertion_pattern_match: ""
+  assertion_pattern_match_variable: ""
+get_version_success_200:
+  request_method: GET
+  request_path: "/version"
+  expected_http_status: "200"
+  expected_data_filepath: ""
+  assertion_expression: ""
+  assertion_variable: ""
+  assertion_pattern_match: "[0-9].[0-9].[0-9].*"
+  assertion_pattern_match_variable: "build_version"
+get_metrics_success_200:
+  request_method: GET
+  request_path: "/metrics"
+  expected_http_status: "200"
+  expected_data_filepath: ""
+  assertion_expression: ""
+  assertion_variable: "payload.mule_version"
+  assertion_pattern_match: ""
+  assertion_pattern_match_variable: ""
+get_console_success_200:
+  request_method: GET
+  request_path: "/console"
+  expected_http_status: "200"
+  expected_data_filepath: ""
+  assertion_expression: ""
+  assertion_variable: ""
+  assertion_pattern_match: ""
+  assertion_pattern_match_variable: ""
+#get_console_notfound:
+#  request_method: GET
+#  request_path: "/console/bad"
+#  expected_http_status: "404"
+#  expected_data_filepath: ""
+#  assertion_expression: ""
+#  assertion_variable: ""
+#  assertion_pattern_match: ""
+#  assertion_pattern_match_variable: ""
